@@ -1,6 +1,5 @@
 # =============================================================================
 #                                   Functions
-# =============================================================================
 powerlevel9k_random_color(){
     printf "%03d" $[${RANDOM}%234+16] #random between 16-250
 }
@@ -74,7 +73,7 @@ alias time='time -p ' # -p for POSIX output
 source ~/.zplug/init.zsh
 
 # oh-my-zsh
-#zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
+zplug "robbyrussell/oh-my-zsh", use:"lib/*.zsh"
 
 # Load theme
 zplug "mafredri/zsh-async", from:github, use:async.zsh
@@ -372,30 +371,35 @@ if zplug check "b4b4r07/zsh-history-enhanced"; then
 fi
 
 if zplug check "bhilburn/powerlevel9k"; then
+
     DEFAULT_USER=$USER
-
-    # Easily switch primary foreground/background colors
-    DEFAULT_FOREGROUND=038 DEFAULT_BACKGROUND=024 PROMPT_COLOR=038
-
-
     P9K_MODE="nerdfont-complete"
 
-    P9K_STATUS_VERBOSE=false
-    P9K_DIR_SHORTEN_LENGTH=1
-    #P9K_SHORTEN_STRATEGY="truncate_right"
+    # Easily switch primary foreground/background colors
 
+
+    P9K_TIME_ICON="\uF017" # 
+    P9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
+    P9K_COMMAND_EXECUTION_TIME_PRECISION=1
+
+    P9K_BACKGROUND_JOBS_FOREGROUND="123"
+
+    P9K_USER_DEFAULT_ICON="\uF415" # 
+    P9K_USER_ROOT_ICON=$'\uFF03' # ＃
+
+
+    P9K_HOST_LOCAL_ICON="\uF109 "   # 
+    P9K_HOST_REMOTE_ICON="\uF489 "  # 
+    P9K_SSH_ICON="\uF489 "          # 
+
+    P9K_STATUS_VERBOSE=false
     P9K_DIR_OMIT_FIRST_CHARACTER=false
 
-    P9K_CONTEXT_ALWAYS_SHOW=true
-    P9K_CONTEXT_ALWAYS_SHOW_USER=false
-
-    #P9K_CONTEXT_TEMPLATE="\uF109 %m"
+    P9K_CONTEXT_ALWAYS_SHOW=false
+    P9K_CONTEXT_ALWAYS_SHOW_USER=true
 
     P9K_LEFT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
     P9K_RIGHT_SUBSEGMENT_SEPARATOR_ICON="%F{232}\uE0BD%f"
-
-    #P9K_LEFT_SEGMENT_SEPARATOR_ICON='▓▒░'
-    #P9K_RIGHT_SEGMENT_SEPARATOR_ICON='░▒▓'
 
     P9K_PROMPT_ON_NEWLINE=false
     P9K_RPROMPT_ON_NEWLINE=false
@@ -407,77 +411,13 @@ if zplug check "bhilburn/powerlevel9k"; then
     P9K_MULTILINE_FIRST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}%f"
     P9K_MULTILINE_LAST_PROMPT_PREFIX_ICON="%F{$PROMPT_COLOR}➜ %f"
 
-    P9K_LEFT_PROMPT_ELEMENTS=(os_icon context dir dir_writable vcs)
-    P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time) 
+    P9K_LEFT_PROMPT_ELEMENTS=(context dir dir_writable vcs)
+    P9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time time)
 
-    P9K_VCS_GIT_GITHUB_ICON=""
-    P9K_VCS_GIT_BITBUCKET_ICON=""
-    P9K_VCS_GIT_GITLAB_ICON=""
-    P9K_VCS_GIT_ICON=""
-
-    
-
-    P9K_DIR_HOME_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_HOME_FOREGROUND="158"
-    P9K_DIR_HOME_SUBFOLDER_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_HOME_SUBFOLDER_FOREGROUND="158"
-    P9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_WRITABLE_FORBIDDEN_FOREGROUND="red"
-    P9K_DIR_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_DEFAULT_FOREGROUND="158"
-    P9K_DIR_ETC_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_ETC_FOREGROUND="158"
-    P9K_DIR_NOT_WRITABLE_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_DIR_NOT_WRITABLE_FOREGROUND="158"
-
-    P9K_ROOT_INDICATOR_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_ROOT_INDICATOR_FOREGROUND="red"
-
-    P9K_STATUS_OK_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_STATUS_OK_FOREGROUND="green"
-    P9K_STATUS_ERROR_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_STATUS_ERROR_FOREGROUND="red"
-
-    P9K_TIME_ICON="\uF017" # 
-    P9K_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_TIME_FOREGROUND="183"
-
-    P9K_COMMAND_EXECUTION_TIME_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_COMMAND_EXECUTION_TIME_FOREGROUND="183"
-    P9K_COMMAND_EXECUTION_TIME_THRESHOLD=0
-    P9K_COMMAND_EXECUTION_TIME_PRECISION=1
-
-    P9K_BACKGROUND_JOBS_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_BACKGROUND_JOBS_FOREGROUND="123"
-
-    P9K_USER_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_USER_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_USER_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_USER_DEFAULT_ICON="\uF415" # 
-    P9K_USER_ROOT_ICON=$'\uFF03' # ＃
-
-    P9K_CONTEXT_TEMPLATE="\uF109 %m"
-    P9K_CONTEXT_DEFAULT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_DEFAULT_FOREGROUND="123"
-    P9K_CONTEXT_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_SUDO_FOREGROUND="123"
-    P9K_CONTEXT_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_REMOTE_FOREGROUND="123"
-    P9K_CONTEXT_REMOTE_SUDO_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_REMOTE_SUDO_FOREGROUND="123"
-    P9K_CONTEXT_ROOT_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_CONTEXT_ROOT_FOREGROUND="123"
-
-    P9K_HOST_LOCAL_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_HOST_REMOTE_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_HOST_LOCAL_ICON="\uF109 " # 
-    P9K_HOST_REMOTE_ICON="\uF489 "  # 
-
-    P9K_SSH_ICON="\uF489 "  # 
-    P9K_SSH_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_SSH_FOREGROUND="212"
-    P9K_OS_ICON_BACKGROUND="$DEFAULT_BACKGROUND"
-    P9K_OS_ICON_FOREGROUND="212"
+    P9K_VCS_GIT_GITHUB_ICON="\uF09b"    # 
+    P9K_VCS_GIT_BITBUCKET_ICON="\uF171" # 
+    P9K_VCS_GIT_GITLAB_ICON="\uF296"    # 
+    P9K_VCS_GIT_ICON="\uF1d3"           # 
 fi
 
 # Then, source plugins and add commands to $PATH
@@ -489,7 +429,6 @@ zplug load
 zstyle ':completion:' completer _complete _match _approximate
 zstyle ':completion:' group-name ''
 zstyle ':completion:' special-dirs true
-#zstyle ':completion:' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:' use-cache true
 zstyle ':completion:' verbose yes
@@ -520,6 +459,10 @@ zstyle ":completion:*" matcher-list \
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*:default' list-colors "${(s.:.)LS_COLORS}"
 
+# =============================================================================
+#                                 CUSTOM
+# =============================================================================
+
 # HUB
 alias git='hub'
 
@@ -532,6 +475,7 @@ export UPDATE_ZSH_DAYS=7
 
 # git: use system ssh for git, otherwise UseKeychain option doesn't work
 export GIT_SSH=/usr/bin/ssh
+alias gpm='git checkout master; git pull origin master'
 
 # GO
 export PATH=$PATH:/usr/local/go/bin
